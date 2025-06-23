@@ -5,7 +5,8 @@
     "composer": "Julius Kramer",
     "pic": "",
     "description": "Ein orchestraler Streifzug durch die Welt von HTML, CSS und JavaScript.",
-    "count": 5
+    "count": 5,
+    "ean": "9780000000000"
   },
   {
     "id": 1,
@@ -13,7 +14,8 @@
     "composer": "Lina Wolff",
     "pic": "",
     "description": "Eine klangvolle Komposition über Event Loops und Promises.",
-    "count": 4
+    "count": 4,
+    "ean": "9780000000001"
   },
   {
     "id": 2,
@@ -21,7 +23,8 @@
     "composer": "Finn Schneider",
     "pic": "",
     "description": "Musikalische Muster inspiriert von Flexbox, Grid und Media Queries.",
-    "count": 6
+    "count": 6,
+    "ean": "9780000000002"
   },
   {
     "id": 3,
@@ -29,7 +32,8 @@
     "composer": "Sophie Lang",
     "pic": "",
     "description": "Eine emotionale Klangreise durch Komponenten, States und Lifecycle-Methoden.",
-    "count": 3
+    "count": 3,
+    "ean": "9780000000003"
   },
   {
     "id": 4,
@@ -37,7 +41,8 @@
     "composer": "Ben Tiller",
     "pic": "",
     "description": "Ein musikalisches Werk über Branches, Commits und Merge-Konflikte.",
-    "count": 5
+    "count": 5,
+    "ean": "9780000000004"
   },
   {
     "id": 5,
@@ -45,7 +50,8 @@
     "composer": "Mara Beck",
     "pic": "",
     "description": "Ein Ambient-Stück inspiriert von Routing, Middleware und APIs.",
-    "count": 4
+    "count": 4,
+    "ean": "9780000000005"
   },
   {
     "id": 6,
@@ -53,7 +59,8 @@
     "composer": "Niklas Stern",
     "pic": "",
     "description": "Eine Suite über die Manipulation der digitalen Welt – dynamisch und interaktiv.",
-    "count": 5
+    "count": 5,
+    "ean": "9780000000006"
   },
   {
     "id": 7,
@@ -61,7 +68,8 @@
     "composer": "Elisa Gruber",
     "pic": "",
     "description": "Elektronische Klangflächen, die die Leistung und Tiefe von WebAssembly feiern.",
-    "count": 2
+    "count": 2,
+    "ean": "9780000000007"
   },
   {
     "id": 8,
@@ -69,7 +77,8 @@
     "composer": "Tobias Mahler",
     "pic": "",
     "description": "Eine minimalistische Klangstudie über Fehler, Umwege und unerwartete Lösungen.",
-    "count": 6
+    "count": 6,
+    "ean": "9780000000008"
   },
   {
     "id": 9,
@@ -77,7 +86,8 @@
     "composer": "Hannah Dietrich",
     "pic": "",
     "description": "Eine kontrapunktische Komposition zwischen Frontend und Backend.",
-    "count": 3
+    "count": 3,
+    "ean": "9780000000009"
   },
   {
     "id": 10,
@@ -85,6 +95,7 @@
     "composer": "Julius Kramer",
     "pic": "",
     "description": "Ein orchestraler Streifzug durch die Welt von HTML, CSS und JavaScript.",
-    "count": 8
+    "count": 8,
+    "ean": "9780000000010"
   }
 ]
