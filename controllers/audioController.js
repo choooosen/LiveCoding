@@ -22,9 +22,12 @@ const getAllAudio = () => {
 }
 
 const createAudio = (data) => {
-  let { title, composer, description, count } = data.body;
-  if (!title || !composer || !description || !count) {
-    return { status: 422, data: "title, composer, description and count must be set" };
+  let { title, composer, description, count, ean } = data.body;
+  if (!title || !composer || !description || !count || !ean) {
+    return { status: 422, data: "title, composer, description, count and ean must be set" };
+  }
+  if (!/^\d{13}$/.test(ean)) {
+    return { status: 422, data: "ean must be a 13 digit number" };
   }
   try {
     let filename = '';
@@ -43,7 +46,8 @@ const createAudio = (data) => {
       composer: composer,
       pic: filename,
       description: description,
-      count: count
+      count: count,
+      ean: ean
     }
     audios.push(audio);
     fs.writeFileSync('models/audio.json', JSON.stringify(audios, null, 2));
@@ -66,7 +70,7 @@ const readAudio = (id) => {
 const updateAudio = (id, data) => {
   let audioIndex = audios.findIndex(p => p.id === parseInt(id));
 
-  let { title, composer, description, count } = data.body;
+  let { title, composer, description, count, ean } = data.body;
 
   if (audioIndex != -1) {
     let filename = audios[audioIndex].pic;
@@ -79,6 +83,12 @@ const updateAudio = (id, data) => {
     if (composer != undefined) { audios[audioIndex].composer = composer; }
     if (description != undefined) { audios[audioIndex].description = description; }
     if (count != undefined) { audios[audioIndex].count = count; }
+    if (ean != undefined) {
+      if (!/^\d{13}$/.test(ean)) {
+        return { status: 422, data: "ean must be a 13 digit number" };
+      }
+      audios[audioIndex].ean = ean;
+    }
 
     fs.writeFileSync('models/audio.json', JSON.stringify(audios, null, 2));
     return { status: 200, data: audios[audioIndex] };
