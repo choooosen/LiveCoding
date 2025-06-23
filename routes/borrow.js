@@ -173,6 +173,20 @@ router.route("/")
     res.status(response.status).json(response.data);
   })
 
+router.get('/overdue/:year/:month/:day', (req, res, next) => {
+  const { year, month, day } = req.params;
+  const date = new Date(year, month - 1, day).toISOString().split('T')[0];
+  let response = borrowController.findOverdueAfterDate(date);
+  res.status(response.status).json(response.data);
+});
+
+router.get('/overdue/:year/:month', (req, res, next) => {
+  const { year, month } = req.params;
+  const date = new Date(year, month - 1, 1).toISOString().split('T')[0];
+  let response = borrowController.findOverdueAfterDate(date);
+  res.status(response.status).json(response.data);
+});
+
 router.route("/:id")
   .get((req, res, next) => {
     let response = borrowController.readBorrow(req.params.id, req.body);
