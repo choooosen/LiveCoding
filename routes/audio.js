@@ -9,7 +9,6 @@
 *         - composer
 *         - description
 *         - count
-*         - ean
 *       properties:
 *         id:
 *           type: integer
@@ -23,12 +22,9 @@
 *         description:
 *           type: string
 *           description: A brief description of the audio
-*         count:
+*         count: 
 *           type: integer
 *           description: The number of copies available
-*         ean:
-*           type: string
-*           description: The 13 digit EAN number
 *         pic:
 *           type: file 
 *           description: The cover image of the audio
@@ -37,14 +33,12 @@
 *         composer: "Julius Kramer"
 *         description: "Ein orchestraler Streifzug durch die Welt von HTML, CSS und JavaScript."
 *         count: 5
-*         ean: "9780000000000"
 *     Audio:
 *       allOf:
 *         - $ref: '#/components/schemas/CreateAudio'
 *         - example:
 *             id: 0
 *             pic: "/uploads/audio-cover.jpg"
-*             ean: "9780000000000"
 */
 /** 
 * @swagger
@@ -86,7 +80,7 @@
 *             schema:
 *               $ref: '#/components/schemas/Audio'
 *       422:
-*         description: Validation error, title, composer, description, count and ean must be set
+*         description: Validation error, title, composer, description and count must be set
 *       500:
 *         description: Server error
 *
@@ -136,7 +130,7 @@
 *             schema:
 *               $ref: '#/components/schemas/Audio'
 *       422:
-*         description: Validation error, title, composer, description, count and ean must be set
+*         description: Validation error, title, composer, description and count must be set
 *       500:
 *         description: Server error
 *   delete:
