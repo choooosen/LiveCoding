@@ -72,6 +72,11 @@ const createBorrow = (bor) => {
         return { status: check.status, data: check.data };
     }
 
+    const activeCount = borrows.filter(b => b.userid === parseInt(userid) && b.articleType === articleType && Date.parse(b.end) >= Date.now()).length;
+    if (activeCount >= 3) {
+        return { status: 422, data: "borrow limit for this article type reached" };
+    }
+
     let newId = borrows.length ? borrows[borrows.length - 1].id + 1 : 0;
     if (data.id) {
         newId = parseInt(data.id)
@@ -110,6 +115,11 @@ const updateBorrow = (id, bor) => {
     let check = checkBorrow(bor);
     if (check.status !== 200) {
         return { status: check.status, data: check.data };
+    }
+
+    const activeCount = borrows.filter(b => b.userid === parseInt(userid) && b.articleType === articleType && Date.parse(b.end) >= Date.now() && b.id !== parseInt(id)).length;
+    if (activeCount >= 3) {
+        return { status: 422, data: "borrow limit for this article type reached" };
     }
 
     if (borrowIndex != -1) {

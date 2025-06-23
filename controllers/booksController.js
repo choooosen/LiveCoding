@@ -21,9 +21,12 @@ const getAllBooks = () => {
 }
 
 const createBook = (data) => {
-  let { title, author, description, count } = data.body;
-  if (!title || !author || !description || !count) {
-    return { status: 422, data: "title, author, description and count must be set" };
+  let { title, author, description, count, ean } = data.body;
+  if (!title || !author || !description || !count || !ean) {
+    return { status: 422, data: "title, author, description, count and ean must be set" };
+  }
+  if (!/^\d{13}$/.test(String(ean))) {
+    return { status: 422, data: "ean must be a 13 digit number" };
   }
   try {
     let filename = '';
@@ -42,7 +45,8 @@ const createBook = (data) => {
       author: author,
       pic: filename,
       description: description,
-      count: count
+      count: count,
+      ean: String(ean)
     }
     books.push(book);
     fs.writeFileSync('models/books.json', JSON.stringify(books, null, 2));
@@ -61,11 +65,19 @@ const readBook = (id) => {
   }
 }
 
+const findBooksByAuthor = (author) => {
+  if (!author) {
+    return { status: 422, data: "author must be set" };
+  }
+  const result = books.filter(b => b.author && b.author.toLowerCase().includes(String(author).toLowerCase()));
+  return { status: 200, data: result };
+}
+
 
 const updateBook = (id, data) => {
   let bookIndex = books.findIndex(p => p.id === parseInt(id));
 
-  let { title, author, description, count } = data.body;
+  let { title, author, description, count, ean } = data.body;
 
   if (bookIndex != -1) {
     let filename = books[bookIndex].pic;
@@ -78,6 +90,12 @@ const updateBook = (id, data) => {
     if (author != undefined) { books[bookIndex].author = author; }
     if (description != undefined) { books[bookIndex].description = description; }
     if (count != undefined) { books[bookIndex].count = count; }
+    if (ean != undefined) {
+      if (!/^\d{13}$/.test(String(ean))) {
+        return { status: 422, data: "ean must be a 13 digit number" };
+      }
+      books[bookIndex].ean = String(ean);
+    }
 
     fs.writeFileSync('models/books.json', JSON.stringify(books, null, 2));
     return { status: 200, data: books[bookIndex] };
@@ -101,5 +119,6 @@ module.exports = {
   createBook,
   readBook,
   updateBook,
-  deleteBook
+  deleteBook,
+  findBooksByAuthor
 }

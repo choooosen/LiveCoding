@@ -169,6 +169,12 @@ router.route("/")
     res.status(response.status).json(response.data);
   })
 
+router.route("/author/:author")
+  .get((req, res, next) => {
+    let response = booksController.findBooksByAuthor(req.params.author);
+    res.status(response.status).json(response.data);
+  })
+
 router.route("/:id")
   .get((req, res, next) => {
     let response = booksController.readBook(req.params.id, req.body);
